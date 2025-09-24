@@ -12,6 +12,8 @@ class Matrix{
         Matrix(int row, int col) {
             create_matrix(row, col);
         }
+        // default if none is given
+        Matrix();
 
         float element(int row, int col){
             return data[(row - 1) * cols + (col - 1)];
@@ -22,6 +24,14 @@ class Matrix{
         }
 
         bool same_as(const Matrix& other) const{
+            // if there are 0 cols or rows
+            if (cols*rows == 0){
+                return false;
+            }
+            // mismatch in size
+            if (cols*rows != other.rows*other.cols){
+                return false;}
+            // normal case
             for (auto i = 0; i < cols*rows; i++){
                 if (abs(data[i] - other.data[i]) < 1e-10){
                     return false;
