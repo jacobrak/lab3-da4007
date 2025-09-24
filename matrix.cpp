@@ -33,16 +33,32 @@ class Matrix{
             ;
         }
 
-        string str(){
-            string final_string;
+        string str() {
+            string final_string = "[";
+            for (int r = 1; r <= rows; r++) {
+                final_string += "[";
+                for (int c = 1; c <= cols; c++) {
+                    final_string += to_string(element(r, c));
+                    
+                    if (c < cols) {
+                        final_string += ", ";   // comma between elements in a row
+                    }
+                }
+                
+                final_string += "]";
+                if (r < rows) {
+                    final_string += ", ";       // comma between rows
+                }
+            }
+            final_string += "]";
             return final_string;
         }
 
-        private:
-            // Private members
-            std::vector<float> data;
-            int rows;
-            int cols;
+    private:
+        // Private members
+        std::vector<float> data;
+        int rows;
+        int cols;
 
         void read_file(const string& file_path){
             ifstream file(file_path);
@@ -51,6 +67,7 @@ class Matrix{
                 cerr << "bad filename " << file_path << endl;
                 return;
             }
+            // read matrix
             read_matrix(file);
         }
 
@@ -60,6 +77,8 @@ class Matrix{
             valid_file >> row >> col;
             cout << row << " " << col << endl;
             create_matrix(row, col);
+            // populate
+            populate_matrix(valid_file);
         }
 
         void create_matrix(int row, int col){
@@ -69,11 +88,21 @@ class Matrix{
             int matrix_size = row*col;
             data = std::vector<float>(matrix_size, 0.0f);
         }
+
+        void populate_matrix(istream& valid_file){
+            for (int r = 1; r <= rows; r++) {
+                for (int c = 1; c <= cols; c++) {
+                    float val;
+                    valid_file >> val;
+                    set_element(r, c, val);
+                }
+            }
+        }
         
 };  
 
 int main(){
     Matrix my_obj("m1.txt");
-    my_obj.set_element(2,3, 9.9);
+    cout <<my_obj.str() << endl;
     return 0;
 }
