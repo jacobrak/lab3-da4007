@@ -1,18 +1,19 @@
 #include "matrix.h"
-
-Matrix::Matrix(const string& file_path){
-    read_file(file_path);
-}
-
-Matrix::Matrix(int row, int col) {
-    create_matrix(row, col);
-}
-
 // default if none is given
 Matrix::Matrix(){
     rows = 0; 
     cols = 0; 
     data = vector<float>();
+}
+
+// Constructor given filepath 
+Matrix::Matrix(const string& file_path){
+    read_file(file_path);
+}
+
+// Constructor given row and column
+Matrix::Matrix(int row, int col) {
+    create_matrix(row, col);
 }
 
 // Element function which gathers the specific value at a point using math indexing at 1
