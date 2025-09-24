@@ -15,17 +15,18 @@ Matrix::Matrix(){
     data = vector<float>();
 }
 
-// element
+// Element function which gathers the specific value at a point using math indexing at 1
 float Matrix::element(int row, int col) const {
     return data[(row - 1) * cols + (col - 1)];
 }
 
-// set_element
+// Set_element function sets values indvidually using math indexing at 1
 void Matrix::set_element(int row, int col, float val) {
     data[(row - 1) * cols + (col - 1)] = val;
 }
 
-// using c++ 20 adds float overridding (fabs function) doesn't exist, therefore abs will be used here instead
+// Calculates if two matrices are identical first checks exakt size returns a boolean value
+// Using c++ 20 adds float overridding (fabs function) doesn't exist, therefore abs will be used here instead
 bool Matrix::same_as(const Matrix& other) const {
     if (rows != other.rows || cols != other.cols) {
         return false;
@@ -41,7 +42,7 @@ bool Matrix::same_as(const Matrix& other) const {
     return true;
 }
 
-// adds to matrixes together
+// Adds to matrixes together
 void Matrix::add(const Matrix &other){
     // mismatch in size
     if (rows != other.rows || cols != other.cols) {
@@ -52,14 +53,14 @@ void Matrix::add(const Matrix &other){
     }
 }
 
-// multiply two matrices together
+// Multiply two matrices together
 void Matrix::multiply(const Matrix &other) {
     if (cols != other.rows) {
         cerr << "dimension mismatch" << endl;
         return;
     }
 
-    // create a new matrix
+    // Create a new matrix
     Matrix result(rows, other.cols);
 
     for (int i = 1; i <= rows; i++) {
@@ -72,11 +73,11 @@ void Matrix::multiply(const Matrix &other) {
         }
     }
 
-    // overwrite this matrix A with result A*B
+    // Overwrite this matrix A with result A*B
     *this = result;
 }
 
-
+// Str function which returns in matlib format
 string Matrix::str() const {
     string final_string = "[";
     for (int r = 1; r <= rows; r++) {
@@ -98,6 +99,7 @@ string Matrix::str() const {
     return final_string;
 }
 
+// Helper function which read a file and calls read_matrix
 void Matrix::read_file(const string& file_path){
     ifstream file(file_path);
 
@@ -108,15 +110,16 @@ void Matrix::read_file(const string& file_path){
     read_matrix(file);
 }
 
+// Reads matrix values first creating a empty matrix then uses populate_matrix() to populate the matrix
 void Matrix::read_matrix(istream& valid_file){
     int row, col;
 
     valid_file >> row >> col;
-    cout << row << " " << col << endl;
     create_matrix(row, col);
     populate_matrix(valid_file);
 }
 
+// Creates the empty matrix and asigns rows, cols, using a flat 1d matrix using vector
 void Matrix::create_matrix(int row, int col){
     rows = row;
     cols = col;
@@ -124,6 +127,7 @@ void Matrix::create_matrix(int row, int col){
     data = std::vector<float>(matrix_size, 0.0f);
 }
 
+// Populates the matrix given the previously validated file and uses the set_element function for each value
 void Matrix::populate_matrix(istream& valid_file){
     for (int row = 1; row <= rows; row++) {
         for (int col = 1; col <= cols; col++) {
