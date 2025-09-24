@@ -22,6 +22,11 @@ class Matrix{
         }
 
         bool same_as(const Matrix& other){
+            for (auto i = 0; i < cols*rows; i++){
+                if (data[i] - other.data[i] > 1e-10){
+                    return false;
+                }
+            }
             return true;
         }
 
