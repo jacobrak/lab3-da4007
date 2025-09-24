@@ -90,11 +90,11 @@ class Matrix{
         }
 
         void populate_matrix(istream& valid_file){
-            for (int r = 1; r <= rows; r++) {
-                for (int c = 1; c <= cols; c++) {
+            for (int row = 1; row <= rows; row++) {
+                for (int col = 1; col <= cols; col++) {
                     float val;
                     valid_file >> val;
-                    set_element(r, c, val);
+                    set_element(row, col, val);
                 }
             }
         }
