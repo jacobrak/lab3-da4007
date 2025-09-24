@@ -9,6 +9,20 @@ class Matrix{
         Matrix(const string& file_path){
             read_file(file_path);
         }
+        
+        float element(int row, int col){
+            return data[(row - 1) * cols + (cols - 1)];
+        }
+        
+        void set_element(int row, int col, float val) {
+            data[(row - 1) * cols + (col - 1)] = val;
+        }
+
+        private:
+            // Private members
+            std::vector<float> data;
+            int rows;
+            int cols;
         void read_file(const string& file_path){
             ifstream file(file_path);
 
@@ -33,18 +47,6 @@ class Matrix{
             int matrix_size = row*col;
             std::vector<float> matrix_size(matrix_size, 0.0f);
             }
-        float element(int row, int col){
-            return data[(row - 1) * cols + (cols - 1)];
-        }
-        void set_element(int row, int col, float val) {
-            data[(row - 1) * cols + (col - 1)] = val;
-        }
-        private:
-            // Private members
-            std::vector<float> data;
-            int rows;
-            int cols;
-
         
 };  
 
