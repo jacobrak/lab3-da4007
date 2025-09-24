@@ -9,7 +9,10 @@ class Matrix{
         Matrix(const string& file_path){
             read_file(file_path);
         }
-        
+        Matrix(int row, int col) {
+            create_matrix(row, col);
+        }
+
         float element(int row, int col){
             return data[(row - 1) * cols + (col - 1)];
         }
@@ -23,6 +26,7 @@ class Matrix{
             std::vector<float> data;
             int rows;
             int cols;
+
         void read_file(const string& file_path){
             ifstream file(file_path);
 
@@ -31,8 +35,8 @@ class Matrix{
                 return;
             }
             read_matrix(file);
-
         }
+
         void read_matrix(istream& valid_file){
             int row, col;
 
@@ -40,13 +44,14 @@ class Matrix{
             cout << row << " " << col << endl;
             create_matrix(row, col);
         }
+
         void create_matrix(int row, int col){
             // 1d vector
             rows = row;
             cols = col;
             int matrix_size = row*col;
             data = std::vector<float>(matrix_size, 0.0f);
-            }
+        }
         
 };  
 
