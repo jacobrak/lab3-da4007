@@ -21,6 +21,23 @@ class Matrix{
             data[(row - 1) * cols + (col - 1)] = val;
         }
 
+        bool same_as(const Matrix& other){
+            return true;
+        }
+
+        void add(const Matrix &other){
+            ;
+        }
+
+        void multiply(const Matrix &other){
+            ;
+        }
+
+        string str(){
+            string final_string;
+            return final_string;
+        }
+
         private:
             // Private members
             std::vector<float> data;
