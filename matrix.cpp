@@ -29,8 +29,9 @@ class Matrix{
                 return false;
             }
             // mismatch in size
-            if (cols*rows != other.rows*other.cols){
-                return false;}
+            if (rows != other.rows || cols != other.cols) {
+                return;
+            }
             // normal case
             for (auto i = 0; i < cols*rows; i++){
                 if (abs(data[i] - other.data[i]) < 1e-10){
@@ -41,7 +42,13 @@ class Matrix{
         }
 
         void add(const Matrix &other){
-            ;
+            // mismatch in size
+            if (rows != other.rows || cols != other.cols) {
+                return;
+            }
+            for (auto i = 0; i < cols*rows; i++){
+                data[i] += other.data[i];
+            }
         }
 
         void multiply(const Matrix &other){
