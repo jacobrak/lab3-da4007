@@ -14,11 +14,14 @@ class Matrix{
                 cerr << "bad filename " << file_path << endl;
                 return;
             }
+            int row, col;
 
+            file >> row >> col;
+            cout << row << " " << col << endl;
         }
 };  
 
 int main(){
-    Matrix my_obj("m4.txt");
+    Matrix my_obj("m1.txt");
     return 0;
 }
