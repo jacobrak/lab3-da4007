@@ -11,9 +11,9 @@ class Matrix{
         }
         
         float element(int row, int col){
-            return data[(row - 1) * cols + (cols - 1)];
+            return data[(row - 1) * cols + (col - 1)];
         }
-        
+
         void set_element(int row, int col, float val) {
             data[(row - 1) * cols + (col - 1)] = val;
         }
@@ -45,7 +45,7 @@ class Matrix{
             rows = row;
             cols = col;
             int matrix_size = row*col;
-            std::vector<float> matrix_size(matrix_size, 0.0f);
+            data = std::vector<float>(matrix_size, 0.0f);
             }
         
 };  
