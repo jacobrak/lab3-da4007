@@ -21,7 +21,7 @@ class Matrix{
             data[(row - 1) * cols + (col - 1)] = val;
         }
 
-        bool same_as(const Matrix& other){
+        bool same_as(const Matrix& other) const{
             for (auto i = 0; i < cols*rows; i++){
                 if (data[i] - other.data[i] > 1e-10){
                     return false;
