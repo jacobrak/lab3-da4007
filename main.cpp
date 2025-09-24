@@ -17,7 +17,7 @@ void test_header(int num, string name = "") {		// Helper function
  */
 bool almost_equal(float a, float b) {
   float epsilon = 1e-10;
-  return (fabs(a - b) < epsilon);
+  return (abs(a - b) < epsilon);
 }
 
 /*
